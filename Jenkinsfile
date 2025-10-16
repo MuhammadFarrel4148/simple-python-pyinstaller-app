@@ -1,5 +1,5 @@
 node {
-    docker.image('python:3.11.4-slim').withRun(args: '-u 0:0').inside {
+    docker.image('python:3.11.4-slim').inside('-u 0:0') {
         stage('Checkout') {
             checkout scm
         }
