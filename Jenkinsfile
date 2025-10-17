@@ -15,7 +15,7 @@ node {
         }
 
         stage('Build') {
-            sh 'pyinstaller --onefile --name react-app main.py'
+            sh 'pyinstaller --onefile --name react-app app/main.py'
         }
 
         stage('Manual Approval') {
