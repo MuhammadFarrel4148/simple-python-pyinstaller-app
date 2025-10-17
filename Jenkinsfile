@@ -15,7 +15,7 @@ node {
         }
 
         stage('Build') {
-            sh sh 'pyinstaller --onefile --name react-app sources/add2vals.py'
+            sh 'pyinstaller --onefile --name react-app sources/add2vals.py'
         }
 
         stage('Manual Approval') {
