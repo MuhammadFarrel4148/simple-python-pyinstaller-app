@@ -19,18 +19,14 @@ node {
         }
 
         stage('Manual Approval') {
-            steps {
-                input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
-            }
+            input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
         }
 
         stage('Deploy') {
-            steps {
-                sh 'chmod +x dist/react-app'
-                sh './dist/react-app &'
-                sleep 60
-                sh 'pkill -f react-app || true'
-            }
+            sh 'chmod +x dist/react-app'
+            sh './dist/react-app &'
+            sleep 60
+            sh 'pkill -f react-app || true'
         }
     }
 }
