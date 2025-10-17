@@ -5,6 +5,7 @@ node {
         }
 
         stage('Install Dependencies') {
+            sh 'apt-get update && apt-get install -y binutils'
             sh 'pip install pytest pyinstaller'
         }
 
