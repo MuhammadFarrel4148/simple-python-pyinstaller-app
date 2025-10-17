@@ -10,12 +10,12 @@ node {
         }
 
         stage('Test') {
-            sh 'pytest --junitxml=reports/results.xml'
+            sh 'pytest sources/test_calc.py --junitxml=reports/results.xml'
             junit 'reports/results.xml'
         }
 
         stage('Build') {
-            sh 'pyinstaller --onefile --name react-app app/main.py'
+            sh sh 'pyinstaller --onefile --name react-app sources/add2vals.py'
         }
 
         stage('Manual Approval') {
