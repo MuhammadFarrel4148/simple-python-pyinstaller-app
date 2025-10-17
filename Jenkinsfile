@@ -4,13 +4,32 @@ node {
             checkout scm
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             sh 'pip install pytest pyinstaller'
         }
 
         stage('Test') {
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/results.xml'
+        }
+
+        stage('Build') {
+            sh 'pyinstaller --onefile --name react-app main.py'
+        }
+
+        stage('Manual Approval') {
+            steps {
+                input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'chmod +x dist/react-app'
+                sh './dist/react-app &'
+                sleep 60
+                sh 'pkill -f react-app || true'
+            }
         }
     }
 }
